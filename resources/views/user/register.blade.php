@@ -12,7 +12,8 @@
                                     <br />
                                     Luxe Tribes
                                 </h4>
-                                <form action="#" method="POST">
+                                <form method="POST" action="/users" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="overflow-hidden sm:rounded-md">
                                         <div class="bg-white px-4 py-5 sm:p-6">
                                             <div class="grid grid-cols-6 gap-6">
@@ -34,12 +35,12 @@
                                                             <p>Add your photo(optional)</p>
                                                             <p class="text-gray-300 font-extralight text-xs">Supported
                                                                 formats:jpg,jpeg,png</p>
-                                                            <label for="file-upload"
+                                                            <label for="image"
                                                                 class="relative cursor-pointer rounded-md bg-white font-medium ">
                                                                 <span><i class="fas fa-upload"></i>Click here to
                                                                     upload</span>
-                                                                <input id="file-upload" name="file-upload"
-                                                                    type="file" class="sr-only">
+                                                                <input id="image" name="image" type="file"
+                                                                    class="sr-only">
                                                             </label>
                                                         </div>
                                                     </div>
@@ -48,24 +49,50 @@
 
 
                                                 {{-- End of Image Input --}}
-                                                <x-input placeholder="Full Name" type="text" name="fullname"
-                                                    id="fullname" />
 
-                                                <x-input placeholder="Username" type="text" name="username"
-                                                    id="username" />
+                                                <div class="col-span-6 sm:col-span-3">
+                                                    <x-input required placeholder="Full Name" type="text"
+                                                        name="name" id="name" />
+                                                    @error('name')
+                                                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-span-6 sm:col-span-3">
+                                                    <x-input required placeholder="Username" type="text"
+                                                        name="username" id="username" />
+                                                    @error('username')
+                                                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-span-6 sm:col-span-3">
+                                                    <x-input required placeholder="DOB" type="text" name="dob"
+                                                        id="dob" />
+                                                    @error('dob')
+                                                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-span-6 sm:col-span-3">
+                                                    <x-input required placeholder="Email" type="text" name="email"
+                                                        id="email" />
+                                                    @error('email')
+                                                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
 
-                                                <x-input placeholder="DOB" type="text" name="dob"
-                                                    id="dob" />
-
-
-                                                <x-input placeholder="Email" type="text" name="email"
-                                                    id="email" />
-
-                                                <x-input placeholder="Phone name" type="text" name="phone"
-                                                    id="phone" />
-
-                                                <x-input placeholder="Password" type="password" name="password"
-                                                    id="password" />
+                                                <div class="col-span-6 sm:col-span-3">
+                                                    <x-input required placeholder="Phone name" type="text"
+                                                        name="phone" id="phone" />
+                                                    @error('phone')
+                                                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-span-6 sm:col-span-3">
+                                                    <x-input required placeholder="Password" type="password"
+                                                        name="password" id="password" />
+                                                    @error('password')
+                                                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
 
 
                                                 <div class="col-span-12 sm:col-span-6">

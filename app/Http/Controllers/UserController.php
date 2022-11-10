@@ -18,7 +18,7 @@ class UserController extends Controller
 
     public function authenticate(){
         $formfields= request()->validate([
-            'email'=> ['required', 'email'],
+            'username'=> ['required', 'username'],
             'password' => ['required']
         ]);
         if(auth()->attempt($formfields)){
@@ -26,15 +26,20 @@ class UserController extends Controller
 
             return redirect('/')->with('message', 'User logged in');
         }
-        return back()->withErrors(['email'=>'Invalid credentials'])->onlyInput('email');
+        return back()->withErrors(['username'=>'Invalid credentials'])->onlyInput('username');
     }
 
     public function store()
     {
         $formfields = request()->validate([
             'name' => ['required', 'min:2'],
+            'username' => ['required', 'min:2'],
+            'dob' => ['required', 'min:2'],
             'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'confirmed', 'min:6'],
+            'phone' => ['required', 'min:2'],
+            'password' => ['required', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/', 'min:6'],
+            'about' => ['required'],
+
         ]);
 
         //  Hash password

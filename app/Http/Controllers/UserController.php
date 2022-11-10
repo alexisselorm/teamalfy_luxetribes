@@ -18,7 +18,7 @@ class UserController extends Controller
 
     public function authenticate(){
         $formfields= request()->validate([
-            'username'=> ['required', 'username'],
+            'username'=> ['required'],
             'password' => ['required']
         ]);
         if(auth()->attempt($formfields)){

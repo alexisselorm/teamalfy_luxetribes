@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    {{-- International Phone Numbers --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+    <link rel="stylesheet" href="css/intlTelInput.css">
+
+    {{-- Google Font --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
@@ -18,77 +26,50 @@
 </head>
 
 <body class="font-['Playfair_Display']">
-    <header class="w-full">
-        <div class="fixed top-5 left-0 w-full h-16 bg-white">
-            <div class="flex justify-between h-full pr-8 mx-auto flex-nowrap">
-
-                <nav class="h-full ml-12 text-base">
-                    <ul class="flex h-full p-0 m-0 list-none">
-                        <li class="h-full ml-3 first:ml-0">
-                            <a href="#" class="flex hover:text-[#fbb3c1] items-center h-full py-2.5">Group
-                                Trips</a>
-                        </li>
-                        <li class="h-full ml-3 first:ml-0">
-                            <a href="#" class="flex hover:text-[#fbb3c1] items-center h-full py-2.5">Private
-                                trips</a>
-                        </li>
-                        <li class="h-full ml-3 fist:ml-0">
-                            <a href="#" class="flex hover:text-[#fbb3c1] items-center h-full py-2.5">Past trips &
-                                reviews</a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="flex h-full text-4xl pl-24 py-4 mx-auto flex-nowrap">
-                    Luxe Tribes
-                </div>
-                <div class="flex items-center h-full ml-auto">
-                    <nav class="h-full ml-12">
-                        <ul class="flex h-full p-0 m-0 list-none">
-                            <li class="h-full ml-9 first:ml-0">
-                                <a href="#" class="flex hover:text-[#fbb3c1] items-center h-full py-2.5">About
-                                    us</a>
-                            </li>
-                            <li class="h-full ml-3 ">
-                                <a href="#" class="flex hover:text-[#fbb3c1] items-center h-full py-2.5">FAQS</a>
-                            </li>
-                            <li class="h-full ml-3">
-                                <a href="#" class="flex hover:text-[#fbb3c1] items-center h-full py-2.5">Blogs</a>
-                            </li>
-                            <li class="h-full ml-3">
-                                <a href="#" class="flex hover:text-[#fbb3c1] items-center h-full py-2.5">Contact
-                                    us</a>
-                            </li>
-                            <li class="h-8 mt-4 ml-3">
-                                <a href="#"
-                                    class="flex hover:bg-[#fbb3c1] hover:text-white items-center h-full border border-black rounded-lg py-4 px-4"><i
-                                        class="fas fa-search"></i></a>
-                            </li>
-                            @auth
-                                <li class="h-8 ml-3 mt-4">
-                                    <form action="/logout" method="post" class="inline">
-                                        @csrf
-                                        <button type="submit"
-                                            class="flex hover:bg-[#fbb3c1] hover:text-white items-center h-full px-1 border-black border rounded-lg>
-                                            <i class="fa-solid
-                                            fa-door-closed text-sm">Logout</i>
-                                        </button>
-                                    </form>
-                                </li>
-                            @else
-                                <li class="h-8 ml-3 mt-4">
-                                    <a href="/login"
-                                        class="flex hover:bg-[#fbb3c1] hover:text-white items-center h-full px-1 border-black border rounded-lg"><i
-                                            class="fa-regular fa-user mr-2"></i>Login</a>
-                                </li>
-                            @endauth
-                            < </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
+    <x-navbar />
     {{-- Main --}}
     {{ $slot }}
+
+    <script src="js/intlTelInput.js"></script>
+    <script>
+        var input = document.querySelector("#phone"),
+            errorMsg = document.querySelector("#error-msg"),
+            validMsg = document.querySelector("#valid-msg");
+
+        // Error messages based on the code returned from getValidationError
+        var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+
+        // Initialise plugin
+        var intl = window.intlTelInput(input, {
+            utilsScript: "js/utils.js"
+        });
+
+        var reset = function() {
+            input.classList.remove("error");
+            errorMsg.innerHTML = "";
+            errorMsg.classList.add("hide");
+            validMsg.classList.add("hide");
+        };
+
+        // Validate on blur event
+        input.addEventListener('blur', function() {
+            reset();
+            if (input.value.trim()) {
+                if (intl.isValidNumber()) {
+                    validMsg.classList.remove("hide");
+                } else {
+                    input.classList.add("error");
+                    var errorCode = intl.getValidationError();
+                    errorMsg.innerHTML = errorMap[errorCode];
+                    errorMsg.classList.remove("hide");
+                }
+            }
+        });
+
+        // Reset on keyup/change event
+        input.addEventListener('change', reset);
+        input.addEventListener('keyup', reset);
+    </script>
 
 
 

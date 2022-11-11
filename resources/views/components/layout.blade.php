@@ -32,9 +32,7 @@
 
     <script src="js/intlTelInput.js"></script>
     <script>
-        var input = document.querySelector("#phone"),
-            errorMsg = document.querySelector("#error-msg"),
-            validMsg = document.querySelector("#valid-msg");
+        var input = document.querySelector("#phone");
 
         // Error messages based on the code returned from getValidationError
         var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
@@ -50,21 +48,6 @@
             errorMsg.classList.add("hide");
             validMsg.classList.add("hide");
         };
-
-        // Validate on blur event
-        input.addEventListener('blur', function() {
-            reset();
-            if (input.value.trim()) {
-                if (intl.isValidNumber()) {
-                    validMsg.classList.remove("hide");
-                } else {
-                    input.classList.add("error");
-                    var errorCode = intl.getValidationError();
-                    errorMsg.innerHTML = errorMap[errorCode];
-                    errorMsg.classList.remove("hide");
-                }
-            }
-        });
 
         // Reset on keyup/change event
         input.addEventListener('change', reset);

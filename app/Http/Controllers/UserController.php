@@ -47,9 +47,12 @@ class UserController extends Controller
             'about' => ['required'],
 
         ]);
-        $image = request()->file('image')->store('players', 'public');
+        if(request()->hasFile('image')){
 
-        $formfields['image'] = Storage::disk('public')->url($image);
+            $image = request()->file('image')->store('players', 'public');
+
+            $formfields['image'] = Storage::disk('public')->url($image);
+        }
 
 
         //  Hash password

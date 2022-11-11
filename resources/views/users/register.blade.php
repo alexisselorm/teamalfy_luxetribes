@@ -3,7 +3,7 @@
         <section class="flex flex-col pt-40 pb-20">
             <div class="grid grid-cols-12">
                 <div class="col-span-1 col-start-1"></div>
-                <div class="col-span-5 col-start-2 items-center text-start">
+                <div class="items-center col-span-5 col-start-2 text-start">
                     <div class="mt-10 sm:mt-0">
                         <div class="px-4">
                             <div class="mt-5 md:col-span-2 md:mt-0">
@@ -15,14 +15,14 @@
                                 <form method="POST" action="/users" enctype="multipart/form-data">
                                     @csrf
                                     <div class="overflow-hidden sm:rounded-md">
-                                        <div class="bg-white px-4 py-5 sm:p-6">
+                                        <div class="px-4 py-5 bg-white sm:p-6">
                                             <div class="grid grid-cols-6 gap-6">
 
                                                 {{-- Image  Input  --}}
 
                                                 <div class="col-span-12 sm:col-span-6">
                                                     <div class="flex">
-                                                        <div class="border mr-2 rounded-full bg-gray-300">
+                                                        <div class="mr-2 bg-gray-300 border rounded-full">
                                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                 viewBox="0 0 24 24" stroke-width="1.5"
                                                                 stroke="currentColor" class="w-16 h-16">
@@ -33,10 +33,10 @@
                                                         </div>
                                                         <div class="">
                                                             <p>Add your photo(optional)</p>
-                                                            <p class="text-gray-300 font-extralight text-xs">Supported
+                                                            <p class="text-xs text-gray-300 font-extralight">Supported
                                                                 formats:jpg,jpeg,png</p>
                                                             <label for="image"
-                                                                class="relative cursor-pointer rounded-md bg-white font-medium ">
+                                                                class="relative font-medium bg-white rounded-md cursor-pointer ">
                                                                 <span><i class="fas fa-upload"></i>Click here to
                                                                     upload</span>
                                                                 <input id="image" name="image" type="file"
@@ -54,34 +54,34 @@
                                                     <x-input required placeholder="Full Name" type="text"
                                                         name="name" id="name" />
                                                     @error('name')
-                                                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                                                        <p class="text-sm text-red-500">{{ $message }}</p>
                                                     @enderror
                                                 </div>
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <x-input required placeholder="Username" type="text"
                                                         name="username" id="username" />
                                                     @error('username')
-                                                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                                                        <p class="text-sm text-red-500">{{ $message }}</p>
                                                     @enderror
                                                 </div>
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <x-input required placeholder="DOB" type="text" name="dob"
                                                         id="dob" />
                                                     @error('dob')
-                                                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                                                        <p class="text-sm text-red-500">{{ $message }}</p>
                                                     @enderror
                                                 </div>
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <x-input required placeholder="Email" type="text" name="email"
                                                         id="email" />
                                                     @error('email')
-                                                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                                                        <p class="text-sm text-red-500">{{ $message }}</p>
                                                     @enderror
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <select
-                                                        class="mt-1 py-2 block w-full rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                                        class="block w-full py-2 mt-1 bg-white border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                                         required type="text" name="nationality" id="nationality">
                                                         <option>Select a nationality</option>
                                                         @foreach ($countries as $country)
@@ -90,7 +90,7 @@
                                                         @endforeach
                                                     </select>
                                                     @error('nationality')
-                                                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                                                        <p class="text-sm text-red-500">{{ $message }}</p>
                                                     @enderror
                                                 </div>
 
@@ -98,21 +98,21 @@
                                                     <x-input required placeholder="12345678" type="tel"
                                                         name="phone" id="phone" />
                                                     @error('phone')
-                                                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                                                        <p class="text-sm text-red-500">{{ $message }}</p>
                                                     @enderror
                                                 </div>
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <x-input required placeholder="Password" type="password"
                                                         name="password" id="password" />
                                                     @error('password')
-                                                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                                                        <p class="text-sm text-red-500">{{ $message }}</p>
                                                     @enderror
                                                 </div>
 
 
                                                 <div class="col-span-12 sm:col-span-6">
                                                     <textarea type="text" rows="4" placeholder="Tell us about you" name="about" id="about"
-                                                        class="mt-1 py-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
+                                                        class="block w-full py-2 mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
                                                     <p class="float-right">200</p>
                                                 </div>
 
@@ -135,16 +135,16 @@
                 </div>
                 <div class="relative col-span-5 bg-[#e3e3ec] col-start-7 text-start">
                     <div class="absolute top-[25%] left-[10%] h-[640px] w-[640px] items-center align-middle">
-                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.hWOwNrx-L0ACCRxAAD6AhwHaE9%26pid%3DApi&f=1&ipt=d77da4a3e8670db1de7c2052d07571c0faa0bcd2068de9010853f9537ef4b051&ipo=images"
+                        <img src="https://booking.luxetribes.com/images/background/back-4.svg"
                             class="absolute border rounded-xl h-[400px] w-[400px]" alt="">
                     </div>
                     <div class="absolute top-[15%] left-[70%] h-124 w-64 items-center align-middle">
-                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.hWOwNrx-L0ACCRxAAD6AhwHaE9%26pid%3DApi&f=1&ipt=d77da4a3e8670db1de7c2052d07571c0faa0bcd2068de9010853f9537ef4b051&ipo=images"
-                            class="absolute border rounded-xl w-48 h-48" alt="">
+                        <img src="https://booking.luxetribes.com/images/background/back-5.svg"
+                            class="absolute w-48 h-48 border rounded-xl" alt="">
                     </div>
                     <div class="absolute  top-[350px] left-[70%] h-64 w-64 items-center align-middle">
-                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.hWOwNrx-L0ACCRxAAD6AhwHaE9%26pid%3DApi&f=1&ipt=d77da4a3e8670db1de7c2052d07571c0faa0bcd2068de9010853f9537ef4b051&ipo=images"
-                            class="absolute border rounded-xl w-48 h-48" alt="">
+                        <img src="https://booking.luxetribes.com/images/background/back-6.png"
+                            class="absolute w-48 h-48 border rounded-xl" alt="">
                     </div>
 
                 </div>

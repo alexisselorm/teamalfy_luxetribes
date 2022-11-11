@@ -60,7 +60,7 @@
                                         class="mr-2 fa-regular fa-user"></i>Login</a>
                             </li>
                         @endauth
-                        < </ul>
+                    </ul>
                 </nav>
             </div>
         </div>

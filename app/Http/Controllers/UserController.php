@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -37,10 +38,15 @@ class UserController extends Controller
             'dob' => ['required', 'min:2'],
             'email' => ['required', 'email', 'unique:users'],
             'phone' => ['required', 'min:2'],
+            'image'=>['image'],
             'password' => ['required', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/', 'min:6'],
             'about' => ['required'],
 
         ]);
+        $image = request()->file('image')->store('players', 'public');
+
+        $formfields['image'] = Storage::disk('public')->url($image);
+
 
         //  Hash password
         $formfields['password'] = bcrypt($formfields['password']);

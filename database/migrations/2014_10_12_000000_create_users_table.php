@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('dob');
             $table->string('phone');
             $table->string('password');
+            $table->bigInteger("nationality");
             $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();

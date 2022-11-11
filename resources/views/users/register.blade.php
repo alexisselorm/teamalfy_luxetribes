@@ -95,7 +95,7 @@
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-3">
-                                                    <x-input required placeholder="Phone name" type="text"
+                                                    <x-input required placeholder="12345678" type="tel"
                                                         name="phone" id="phone" />
                                                     @error('phone')
                                                         <p class="text-red-500 text-sm">{{ $message }}</p>

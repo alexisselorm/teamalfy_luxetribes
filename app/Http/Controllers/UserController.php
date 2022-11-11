@@ -41,6 +41,7 @@ class UserController extends Controller
             'dob' => ['required', 'min:2'],
             'email' => ['required', 'email', 'unique:users'],
             'phone' => ['required', 'min:2'],
+            'nationality' => ['required'],
             'image'=>['image'],
             'password' => ['required', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/', 'min:6'],
             'about' => ['required'],

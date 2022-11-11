@@ -61,12 +61,25 @@
                                     class="flex hover:bg-[#fbb3c1] hover:text-white items-center h-full border border-black rounded-lg py-4 px-4"><i
                                         class="fas fa-search"></i></a>
                             </li>
-                            <li class="h-8 ml-3 mt-4">
-                                <a href="#"
-                                    class="flex hover:bg-[#fbb3c1] hover:text-white items-center h-full px-1 border-black border rounded-lg"><i
-                                        class="fa-regular fa-user mr-2"></i>Login</a>
-                            </li>
-                        </ul>
+                            @auth
+                                <li class="h-8 ml-3 mt-4">
+                                    <form action="/logout" method="post" class="inline">
+                                        @csrf
+                                        <button type="submit"
+                                            class="flex hover:bg-[#fbb3c1] hover:text-white items-center h-full px-1 border-black border rounded-lg>
+                                            <i class="fa-solid
+                                            fa-door-closed text-sm">Logout</i>
+                                        </button>
+                                    </form>
+                                </li>
+                            @else
+                                <li class="h-8 ml-3 mt-4">
+                                    <a href="/login"
+                                        class="flex hover:bg-[#fbb3c1] hover:text-white items-center h-full px-1 border-black border rounded-lg"><i
+                                            class="fa-regular fa-user mr-2"></i>Login</a>
+                                </li>
+                            @endauth
+                            < </ul>
                     </nav>
                 </div>
             </div>

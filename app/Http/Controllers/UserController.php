@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\Country;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
     public function create()
     {
-        return view('users.register');
+        $countries = Country::all();
+        return view('users.register',[
+            'countries' => $countries
+        ]);
     }
 
     public function login(){

@@ -80,6 +80,21 @@
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-3">
+                                                    <select
+                                                        class="mt-1 py-2 block w-full rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                                        required type="text" name="nationality" id="nationality">
+                                                        <option>Select a nationality</option>
+                                                        @foreach ($countries as $country)
+                                                            <option value="{{ $country->id }}">{{ $country->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('nationality')
+                                                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="col-span-6 sm:col-span-3">
                                                     <x-input required placeholder="Phone name" type="text"
                                                         name="phone" id="phone" />
                                                     @error('phone')
@@ -119,16 +134,15 @@
                     {{-- End of form --}}
                 </div>
                 <div class="relative col-span-5 bg-[#e3e3ec] col-start-7 text-start">
-                    <div
-                        class="absolute border rounded-xl top-[25%] left-[10%] h-[640px] w-[640px] items-center align-middle">
+                    <div class="absolute top-[25%] left-[10%] h-[640px] w-[640px] items-center align-middle">
                         <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.hWOwNrx-L0ACCRxAAD6AhwHaE9%26pid%3DApi&f=1&ipt=d77da4a3e8670db1de7c2052d07571c0faa0bcd2068de9010853f9537ef4b051&ipo=images"
                             class="absolute border rounded-xl h-[400px] w-[400px]" alt="">
                     </div>
-                    <div class="absolute border rounded-xl top-[15%] left-[70%] h-124 w-64 items-center align-middle">
+                    <div class="absolute top-[15%] left-[70%] h-124 w-64 items-center align-middle">
                         <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.hWOwNrx-L0ACCRxAAD6AhwHaE9%26pid%3DApi&f=1&ipt=d77da4a3e8670db1de7c2052d07571c0faa0bcd2068de9010853f9537ef4b051&ipo=images"
                             class="absolute border rounded-xl w-48 h-48" alt="">
                     </div>
-                    <div class="absolute border rounded-xl top-[350px] left-[70%] h-64 w-64 items-center align-middle">
+                    <div class="absolute  top-[350px] left-[70%] h-64 w-64 items-center align-middle">
                         <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.hWOwNrx-L0ACCRxAAD6AhwHaE9%26pid%3DApi&f=1&ipt=d77da4a3e8670db1de7c2052d07571c0faa0bcd2068de9010853f9537ef4b051&ipo=images"
                             class="absolute border rounded-xl w-48 h-48" alt="">
                     </div>
